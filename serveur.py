@@ -2,7 +2,7 @@ import os
 import base64
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from google import google.generativeai as genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Charge le fichier d'environnement spécifique nommé API.env
