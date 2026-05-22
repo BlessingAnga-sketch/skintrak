@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner - IQ Mélanine</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="scanner">
+    <div class="menu">
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="Index.catalogue.html">Catalogue</a></li>
+                <li><a href="à propos de nous.html">A propos de Nous</a></li>
+            </ul>
+        </nav>
+    </div>
+<section class="scanner-box">
+    <h1>AI Beauty Scanner</h1>
+
+    <!-- Zone de téléchargement d'image -->
+    <div class="upload-container">
+        <!-- Le vrai input est caché ou stylisé via scanner.css -->
+        <input type="file" id="imageUpload" accept="image/*">
+    </div>
+
+    <!-- Zone de prévisualisation (Fichier ou Caméra) -->
+    <div class="preview-container">
+        <img id="preview" alt="Aperçu de votre photo" style="display:none;">
+        <video id="cameraPreview" autoplay playsinline style="display:none;"></video>
+    </div>
+
+    <!-- Boutons d'action pour la capture -->
+    <div class="action-buttons">
+        <button id="cameraBtn">📸 Utilisez la caméra</button>
+    </div>
+    
+    <!-- Bouton de lancement de l'analyse IA -->
+    <button id="analyzeBtn">🔍 Analyser la photo</button>
+
+    <!-- Zone d'affichage du résultat de l'IA -->
+    <div id="result" style="display:none;">
+        <div id="score"></div>
+    </div>
+</section>
+
+<!-- Ton script unifié qui fait le lien avec le serveur Flask -->
+<script src="script.js"></script>
+</body>
+</html>

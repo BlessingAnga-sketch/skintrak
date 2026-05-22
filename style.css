@@ -1,0 +1,308 @@
+/* ==================================================
+   RESET & CONFIGURATION GLOBALE
+================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0f766e;     /* Vert canard */
+    --secondary: #14b8a6;   /* Turquoise */
+    --accent: #99f6e4;      /* Vert d'eau clair */
+    --dark: #0f172a;        /* Anthracite sombre */
+    --text: #475569;        /* Gris de texte */
+    --white: #ffffff;
+    --shadow: 0 30px 80px rgba(15, 118, 110, 0.12);
+}
+
+body.scanner {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 40px 40px; /* 120px en haut pour laisser la place au menu fixe */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, #d1fae5 0%, transparent 35%),
+        radial-gradient(circle at bottom left, #ccfbf1 0%, transparent 30%),
+        linear-gradient(135deg, #f8fffe, #eefcf9);
+    color: var(--dark);
+}
+
+/* ==================================================
+   BARRE DE NAVIGATION (NAVBAR À PROPOS)
+================================================== */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.08);
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    padding: 22px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--primary) !important;
+    font-weight: 700;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 3px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    transition: 0.3s ease;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ==================================================
+   CARTE PRINCIPALE DU SCANNER
+================================================== */
+.scanner-box {
+    width: 100%;
+    max-width: 750px; /* Légèrement réduit pour un effet plus "carte" centré */
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    border-radius: 35px;
+    padding: 50px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(20, 184, 166, 0.15);
+}
+
+/* Titre principal avec le dégradé de la marque */
+.scanner-box h1 {
+    text-align: center;
+    font-size: 3.2rem;
+    margin-bottom: 40px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==================================================
+   ZONE D'UPLOAD (GLISSER-DÉPOSER / CHOISIR)
+================================================== */
+.upload-container {
+    border: 3px dashed var(--secondary);
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    background: #f8fffe;
+    transition: 0.3s ease;
+}
+
+.upload-container:hover {
+    transform: translateY(-3px);
+    background: #f0fdfa;
+    border-color: var(--primary);
+}
+
+#imageUpload {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    font-family: inherit;
+    color: var(--text);
+}
+
+/* ==================================================
+   ZONE DE PRÉVISUALISATION (PHOTOS & VIDÉO)
+================================================== */
+.preview-container {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative; /* Indispensable pour placer les boutons sur la vidéo */
+}
+
+#preview, #cameraPreview {
+    width: 100%;
+    max-width: 450px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(15, 118, 110, 0.15);
+    border: 2px solid rgba(20, 184, 166, 0.2);
+}
+
+/* En mode caméra, on force le miroir pour que ce soit plus naturel */
+#cameraPreview {
+    transform: scaleX(-1);
+}
+
+/* ==================================================
+   BOUTONS ET ACTIONS
+================================================== */
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espace si vous ajoutez d'autres boutons côte à côte */
+}
+
+/* Bouton principal Caméra (Harmonisé) */
+#cameraBtn {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(15, 118, 110, 0.20);
+    transition: all 0.35s ease;
+}
+
+#cameraBtn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(15, 118, 110, 0.3);
+}
+
+/* Boutons Capturer & Fermer (Apparaissent pendant la vidéo) */
+/* ==================================================
+   DESIGN DES BOUTONS DE CAPTURE DYNAMIQUES
+================================================== */
+/* Style de base pour les deux boutons générés */
+#capturerBtn, #fermerBtn, .btn-camera-action {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px; /* Forme pilule arrondie */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white !important;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.15);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 5px;
+}
+
+/* Bouton Capturer (Dégradé turquoise du site) */
+#capturerBtn {
+    background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+#capturerBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(20, 184, 166, 0.3);
+}
+
+/* Bouton Fermer (Dégradé rouge du site) */
+#fermerBtn {
+    background: linear-gradient(135deg, #ef4444, #991b1b);
+}
+#fermerBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(239, 68, 68, 0.3);
+}
+
+/* L'ARME SECRÈTE : Cache les boutons par défaut au chargement */
+.hidden {
+    display: none !important;
+}
+
+/* Grand Bouton d'analyse finale */
+#analyzeBtn {
+    display: block;
+    margin: 30px auto 0;
+    width: 100%;
+    max-width: 380px;
+    padding: 18px;
+    border: none;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #10b981, #0f766e); /* Teinte légèrement plus verte pour l'action finale */
+    color: var(--white);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(20, 184, 166, 0.25);
+    transition: 0.35s ease;
+}
+
+#analyzeBtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(20, 184, 166, 0.4);
+}
+
+/* ==================================================
+   ZONE DES RÉSULTATS DE L'IA
+================================================== */
+#result {
+    margin-top: 40px;
+    padding: 30px;
+    background: #f8fffe;
+    border-radius: 24px;
+    border-left: 6px solid var(--secondary);
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.06);
+}
+
+#score {
+    color: var(--dark);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN
+================================================== */
+@media (max-width: 768px) {
+    body.scanner {
+        padding: 100px 20px 20px;
+    }
+
+    .scanner-box {
+        padding: 30px 20px;
+        border-radius: 25px;
+    }
+
+    .scanner-box h1 {
+        font-size: 2.3rem;
+        margin-bottom: 30px;
+    }
+
+    .menu ul {
+        gap: 20px;
+        wrap: wrap;
+        padding: 15px;
+    }
+
+    #preview, #cameraPreview {
+        height: 280px;
+    }
+}
+
+/* Classe utilitaire pour cacher les boutons de contrôle caméra au début */
+.hidden {
+    display: none !important;
+    
+}

@@ -1,0 +1,249 @@
+/* ==================================================
+   RESET & VARIABLES (Harmonisé avec SkinTrak)
+================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0f766e;     /* Vert canard */
+    --secondary: #14b8a6;   /* Turquoise */
+    --accent: #99f6e4;      /* Vert d'eau clair */
+    --dark: #0f172a;
+    --text: #475569;
+    --white: #ffffff;
+    --shadow: 0 20px 40px rgba(15, 118, 110, 0.08);
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #ffffff;
+    color: var(--dark);
+    overflow-x: hidden;
+    line-height: 1.7;
+}
+
+/* ==================================================
+   NAVBAR (Identique à votre page d'accueil)
+================================================== */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(20, 184, 166, 0.08);
+    z-index: 1000;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    padding: 22px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 700;
+    position: relative;
+    transition: 0.3s;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 3px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    transition: 0.3s;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* ==================================================
+   BANNIÈRE EN-TÊTE (Style Image avec vos dégradés)
+================================================== */
+.banniere-propos {
+    width: 100%;
+    min-height: 55vh;
+    /* Un mélange de dégradé thématique et d'effet sombre simulant la ville en arrière-plan */
+    background: 
+        linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 118, 110, 0.75) 100%),
+        radial-gradient(circle at top right, #d1fae5 0%, #0f172a 100%);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 8% 60px;
+}
+
+.banniere-overlay {
+    max-width: 800px;
+}
+
+.titre-principal {
+    color: var(--white);
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.separation-points {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    letter-spacing: 6px;
+    margin-bottom: 25px;
+}
+
+.sous-titre {
+    color: #e2e8f0;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* ==================================================
+   SECTION DES 3 COLONNES
+================================================== */
+.conteneur-colonnes {
+    max-width: 1200px;
+    margin: -50px auto 100px; /* Fait remonter légèrement les cartes sur la bannière */
+    padding: 0 4%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.colonne-carte {
+    background: var(--white);
+    padding: 50px 30px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(20, 184, 166, 0.05);
+    transition: all 0.35s ease;
+}
+
+.colonne-carte:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(15, 118, 110, 0.15);
+}
+
+/* Icônes au format SVG fluides */
+.icone-conteneur {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-svg {
+    width: 100%;
+    height: 100%;
+    color: var(--secondary); /* Teinte turquoise fidèle */
+    transition: color 0.3s ease;
+}
+
+.colonne-carte:hover .icone-svg {
+    color: var(--primary); /* Devient vert canard au survol */
+}
+
+/* Typographies internes des cartes */
+.colonne-carte h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.texte-description {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 25px;
+    min-height: 80px; /* Aligne le bas des textes */
+}
+
+.info-alternative {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* ==================================================
+   FOOTER (Identique à vos pages)
+================================================== */
+.etage3 {
+    height: 140px;
+    background: linear-gradient(135deg, var(--primary), #0b5e58);
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN (Tablettes & Mobiles)
+================================================== */
+@media (max-width: 968px) {
+    .conteneur-colonnes {
+        grid-template-columns: 1fr; /* Passe sur une seule colonne */
+        margin-top: 40px;
+        gap: 30px;
+    }
+
+    .titre-principal {
+        font-size: 2.5rem;
+    }
+
+    .sous-titre {
+        font-size: 1.1rem;
+    }
+
+    .colonne-carte {
+        padding: 40px 20px;
+    }
+
+    .texte-description {
+        min-height: auto;
+    }
+}
+/* ==================================================
+   ALIGNEMENT ET STYLE DU TEXTE DANS LE FOOTER
+================================================== */
+.etage3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: 140px;
+    background: linear-gradient(135deg, var(--primary), #0b5e58);
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+.texte-droits {
+    color: rgba(255, 255, 255, 0.8); /* Blanc légèrement transparent pour plus d'élégance */
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
