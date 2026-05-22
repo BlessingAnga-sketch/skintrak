@@ -2,8 +2,7 @@ import os
 import base64
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from google import genai
-from google.genai import types
+from google import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Charge le fichier d'environnement spécifique nommé API.env
@@ -13,8 +12,7 @@ app = Flask(__name__)
 CORS(app)  # Permet aux requêtes AJAX de ton JS local de passer sans blocage CORS
 
 # Récupère la clé API via le nom exact défini dans ton fichier API.env
-api_key_ia = os.environ.get("APIKEY")
-client = genai.Client(api_key=api_key_ia)
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 
 @app.route('/analyser', methods=['POST'])
 def analyser():
