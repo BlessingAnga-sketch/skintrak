@@ -1,6 +1,7 @@
 services:
   - type: web
     name: skintrak
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python serveur.py
+    env: python
+    buildCommand: ""
+    startCommand: "python serveur.py"
+    plan : free
