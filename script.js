@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/analyser";
+const API_URL = "https://skintrak.onrender.com/analyser";
 const fileInput = document.getElementById("imageUpload");
 const previewImg = document.getElementById("preview");
 const cameraBtn = document.getElementById("cameraBtn");
