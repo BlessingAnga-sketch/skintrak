@@ -48,4 +48,5 @@ def analyser():
 
 if __name__ == '__main__':
     # Lance le serveur sur le port 3000 comme configuré dans ton script JS
-    app.run(port=3000, debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=True)
